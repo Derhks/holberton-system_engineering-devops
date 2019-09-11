@@ -1,1 +1,1 @@
-**In this directory there is a script**
+**In this directory there is a script, this script show the current directory**
