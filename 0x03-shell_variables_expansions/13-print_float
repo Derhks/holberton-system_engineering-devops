@@ -1,0 +1,2 @@
+#!/bin/bash
+export NUM="3.14159265359" | printf "%0.2f\n" $NUM
