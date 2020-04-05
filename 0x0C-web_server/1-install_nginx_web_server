@@ -10,3 +10,4 @@ sudo ufw allow 'Nginx HTTP'
 sudo ufw enable
 # Setup the html file 
 echo 'Holberton School' | sudo tee /var/www/html/index.nginx-debian.html
+service nginx start
