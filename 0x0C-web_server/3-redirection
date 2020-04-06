@@ -14,3 +14,4 @@ redirection="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlw
 sudo sed -i "/server_name _;/ a $redirection" /etc/nginx/sites-available/default
 # Start nginx
 sudo service nginx start
+sudo service nginx reload
