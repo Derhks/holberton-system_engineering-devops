@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Installing nginx
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+# Setup ports 80 and 22 enable
+sudo ufw allow 'OpenSSH'
+sudo ufw allow 'Nginx HTTP'
+sudo ufw enable
+# Setup the html file
+echo 'Holberton School' | sudo tee /var/www/html/index.nginx-debian.html
+# Setup 301 Moved Permanently
+redirection="\\\trewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "/server_name _;/ a $redirection" /etc/nginx/sites-available/default
+# Start nginx
+sudo service nginx start
