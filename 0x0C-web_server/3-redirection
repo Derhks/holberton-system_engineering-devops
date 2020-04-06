@@ -3,6 +3,8 @@
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
+# Setup the html file
+echo 'Holberton School' | sudo tee /var/www/html/index.nginx-debian.html
 # Setup 301 Moved Permanently
 redirection="rewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
 sudo sed -i "/server_name _;/ a $redirection" /etc/nginx/sites-available/default
