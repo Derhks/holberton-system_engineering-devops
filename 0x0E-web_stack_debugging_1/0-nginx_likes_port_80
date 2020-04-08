@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-#  Enable the port 80 in nginx
-sudo sed -i "s/8080/80/g" /etc/nginx/sites-available/default
-sudo service nginx start
+# This script setup nginx to listen port 80
+sudo apt-get install -y psmisc
+sudo pkill nginx
+sed -i "s/listen 8080 default_server;/listen 80 default_server;/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
