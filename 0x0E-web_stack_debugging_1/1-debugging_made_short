@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script setup nginx to listen port 80 while it's not running
+sed -i "s/listen 8080 default_server;/listen 80 default_server;/" /etc/nginx/sites-enabled/default
+sudo pkill -1 nginx
