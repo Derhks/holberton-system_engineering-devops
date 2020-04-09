@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#  This script configures HAProxy, installs it and configures load balancer with round robin
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy=1.6.\*
+sudo sed -i "/#CONFIG/a \\\nENABLED=1" /etc/default/haproxy
+backend="backend web-backend\n\tbalance roundrobin\n\tserver 1193-web-01 35.231.33.237:80\n\tserver 1193-web-02 35.185.107.146:80\n\toption httpchk\n"
+sudo sed -i "/errorfile 504/ a $backend" /etc/haproxy/haproxy.cfg
+frontend="\\\nfrontend http\n\tbind *:80\n\tmode http\n\toption forwardfor\n\tdefault_backend web-backend\n"
+sudo sed -i "/errorfile 504/ a $frontend" /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
