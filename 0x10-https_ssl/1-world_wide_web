@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#  This script show the following output
+#  The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+
+
+if (($# == 1))
+then
+    dig www."$1" | grep -A1 'ANSWER SECTION:' > output_file
+    awk '/anteiku.tech/ { printf "The subdomain www is a " $4 " record and points to " $5 "\n" }' output_file
+    dig lb-01."$1" | grep -A1 'ANSWER SECTION:' > output_file
+    awk '/anteiku.tech/ { printf "The subdomain lb-01 is a " $4 " record and points to " $5 "\n" }' output_file
+    dig web-01."$1" | grep -A1 'ANSWER SECTION:' > output_file
+    awk '/anteiku.tech/ { printf "The subdomain web-01 is a " $4 " record and points to " $5 "\n" }' output_file
+    dig web-02."$1" | grep -A1 'ANSWER SECTION:' > output_file
+    awk '/anteiku.tech/ { printf "The subdomain web-02 is a " $4 " record and points to " $5 "\n" }' output_file
+fi
+
+if (($# == 2))
+sub=$2
+then
+    dig "$2"."$1" | grep -A1 'ANSWER SECTION:' > output_file
+    awk '/anteiku.tech/ { printf "The subdomain '$sub' is a " $4 " record and points to " $5 "\n" }' output_file
+fi
+rm output_file
