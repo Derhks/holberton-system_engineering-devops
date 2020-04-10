@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#  Setup nginx to run as a non-root user
+sudo sed -i "21,22 s/80/8080/" /etc/nginx/sites-enabled/default
+sudo chmod u+wr /etc/nginx/nginx.conf
+sudo chown nginx:nginx /etc/nginx/nginx.conf
+sudo pkill -9 apache2
+su nginx -c "service nginx start"
