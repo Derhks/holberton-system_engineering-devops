@@ -5,12 +5,13 @@
 declare -a array
 array=(www lb-01 web-01 web-02)
 cnt="0"
+domain=$1
 if (($# == 1))
 then
     while ((cnt <= 3)); do
 	for sub in ${array[$cnt]}; do
 	    dig "$sub.$1" | grep -A1 'ANSWER SECTION:' > text
-	    awk '/anteiku.tech/ { printf "The subdomain '$sub' is a " $4 " record and points to " $5 "\n" }' text
+	    awk '/'$domain'/ { printf "The subdomain '$sub' is a " $4 " record and points to " $5 "\n" }' text
 	done
 	cnt=$((cnt+1))
     done
@@ -20,6 +21,6 @@ domain="$2.$1"
 sub="$2"
 then
     dig "$domain" | grep -A1 'ANSWER SECTION:' > output_file
-    awk '/anteiku.tech/ { printf "The subdomain '$sub' is a " $4 " record and points to " $5 "\n" }' output_file
+    awk '/'$domain'/ { printf "The subdomain '$sub' is a " $4 " record and points to " $5 "\n" }' output_file
     rm output_file
 fi
