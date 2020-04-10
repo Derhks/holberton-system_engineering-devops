@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#  This script change temporaly the user
+su "$1" -c whoami
