@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installing nginx
+# Installing nginx and setup to run as a non-root user
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
@@ -15,6 +15,7 @@ sudo chown nginx:nginx /var/log/nginx/access.log
 sudo chown nginx:nginx /var/log/nginx/error.log
 sudo touch /run/nginx.pid
 sudo chown nginx:nginx /run/nginx.pid
+sudo chown nginx:nginx /etc/nginx/nginx.conf
 sudo chmod u+wr /etc/nginx/nginx.conf
 # Start nginx
 sudo pkill -9 apache2
