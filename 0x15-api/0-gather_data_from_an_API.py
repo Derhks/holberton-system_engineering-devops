@@ -25,4 +25,4 @@ if __name__ == "__main__":
     for cnt in range(len(request_todos.json())):
         if request_todos.json()[cnt]['completed'] is True:
             TASK_TITLE = request_todos.json()[cnt]['title']
-            print("\t{:s}".format(TASK_TITLE))
+            print("\t {:s}".format(TASK_TITLE))
