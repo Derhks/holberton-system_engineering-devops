@@ -21,7 +21,7 @@ if __name__ == "__main__":
         TASK_COMPLETED_STATUS = request_todos.json()[cnt]['completed']
         TASK_TITLE = request_todos.json()[cnt]['title']
 
-        with open('USER_ID.csv', mode='a') as CSV:
+        with open('{:s}.csv'.format(employed_id), mode='a') as CSV:
             CSV = csv.writer(CSV, delimiter=',', quoting=csv.QUOTE_ALL)
             CSV.writerow([USER_ID,
                           USERNAME,
