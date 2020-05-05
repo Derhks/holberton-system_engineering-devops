@@ -29,7 +29,5 @@ if __name__ == "__main__":
             dict_task["username"] = USERNAME
             list_task_user.append(dict_task.copy())
 
-        dict_all_task["{:d}".format(USER_ID)] = list_task_user
-
     with open('todo_all_employees.json', 'a') as JSON:
         json.dump(dict_all_task, JSON)
