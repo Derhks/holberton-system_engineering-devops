@@ -13,7 +13,7 @@ if __name__ == "__main__":
     dict_all_task = {}
     dict_task = {}
 
-    for cnt in range(10, len(requests.get(url).json()) + 1):
+    for cnt in range(1, len(requests.get(url).json()) + 1):
         request_todos = requests.get('{:s}{:d}/todos/'.
                                      format(url, cnt))
         USER_ID = request_todos.json()[0]['userId']
