@@ -20,6 +20,7 @@ if __name__ == "__main__":
         USERNAME = requests.get('{:s}{:d}'.
                                 format(url, cnt)).json().get('username')
         list_task_user = []
+        dict_all_task["{:d}".format(USER_ID)] = list_task_user
         for cnt in range(len(request_todos.json())):
             TASK_COMPLETED_STATUS = request_todos.json()[cnt]['completed']
             TASK_TITLE = request_todos.json()[cnt]['title']
