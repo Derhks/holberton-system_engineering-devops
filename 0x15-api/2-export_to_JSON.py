@@ -28,6 +28,5 @@ if __name__ == "__main__":
         dict_task["completed"] = TASK_COMPLETED_STATUS
         task_list.append(dict_task)
     user_dict["{:d}".format(USER_ID)] = task_list
-    print(user_dict)
     with open('{:s}.json'.format(employed_id), 'a') as JSON:
         json.dump(user_dict, JSON)
