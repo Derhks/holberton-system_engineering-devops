@@ -26,7 +26,7 @@ if __name__ == "__main__":
         TASK_TITLE = request_todos.json()[cnt]['title']
         dict_task["task"] = TASK_TITLE
         dict_task["completed"] = TASK_COMPLETED_STATUS
-        task_list.append(dict_task)
+        task_list.append(dict_task.copy())
     user_dict["{:d}".format(USER_ID)] = task_list
     with open('{:s}.json'.format(employed_id), 'a') as JSON:
         json.dump(user_dict, JSON)
