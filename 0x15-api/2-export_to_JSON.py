@@ -5,6 +5,7 @@ and export data in the JSON format
 """
 
 if __name__ == "__main__":
+    import json
     import requests
     import sys
 
@@ -27,5 +28,6 @@ if __name__ == "__main__":
         dict_task["completed"] = TASK_COMPLETED_STATUS
         task_list.append(dict_task)
     user_dict["{:d}".format(USER_ID)] = task_list
+    print(user_dict)
     with open('{:s}.json'.format(employed_id), 'a') as JSON:
-        JSON.write(str(user_dict))
+        json.dump(user_dict, JSON)
