@@ -5,6 +5,7 @@ and export data in the CSV format
 """
 
 if __name__ == "__main__":
+    import csv
     import requests
     import sys
 
@@ -19,7 +20,10 @@ if __name__ == "__main__":
         USER_ID = request_todos.json()[cnt]['userId']
         TASK_COMPLETED_STATUS = request_todos.json()[cnt]['completed']
         TASK_TITLE = request_todos.json()[cnt]['title']
-        with open('USER_ID.csv', 'a') as CSV:
-            CSV.write('"{:d}", "{:s}", "{}", "{:s}"\n'.
-                      format(USER_ID, USERNAME,
-                             TASK_COMPLETED_STATUS, TASK_TITLE))
+
+        with open('USER_ID.csv', mode='a') as CSV:
+            CSV = csv.writer(CSV, delimiter=',', quoting=csv.QUOTE_ALL)
+            CSV.writerow([USER_ID,
+                          USERNAME,
+                          TASK_COMPLETED_STATUS,
+                          TASK_TITLE])
