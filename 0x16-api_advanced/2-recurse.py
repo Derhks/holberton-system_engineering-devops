@@ -2,29 +2,22 @@
 """
 This method return a list containing the titles of all hot articles
 """
-import requests
+import requests as req
 
 
-def recurse(subreddit, hot_list=[], next_pag=''):
-    response = requests.get('https://www.reddit.com/r/{:s}/hot.json'.
-                            format(subreddit),
-                            allow_redirects=False,
-                            headers={'user-agent': 'test_holberton/1.0'},
-                            params={'limit': 100, 'after': '{}'.
-                                    format(next_pag)})
-    status = response.status_code
-    list_response = response.json().get('data').get('children')
-    if status == 200:
+def recurse(subreddit, hot_list=[], after=""):
+    headers = {'User-agent': 'test_holberton/1.0'}
+    url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(subreddit,
+                                                                 after)
+    data = req.get(url, headers=headers, allow_redirects=False).json()
+    try:
+        list_response = data.get('data').get('children')
         for value in list_response:
             hot_list.append(value.get('data').get('title'))
-        next_pag = response.json().get('data').get('after')
-        if next_pag != 'null':
-            recurse(subreddit, hot_list, next_pag)
-        else:
-            return hot_list
-    else:
+    except:
         return None
 
-
-if __name__ == '__main__':
-    recurse()
+    next_pag = data.get('data').get('after')
+    if next_pag is None:
+        return hot_list
+    return recurse(subreddit, hot_list, next_pag)
